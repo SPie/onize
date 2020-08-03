@@ -1,38 +1,45 @@
 <template>
-    <div>
+  <div>
 
-        <h1>Register</h1>
+    <h1>Register</h1>
+
+    <div>
+      <form>
+
+        <VTextInput 
+          type="email"
+          identifier="email"
+          label="E-Mail"
+          v-model="email"
+          :errorMessages="emailErrors"
+        />
+        <VTextInput
+          type="password"
+          identifier="password"
+          label="Password"
+          v-model="password"
+          :errorMessages="passwordErrors"
+        />
+        <VTextInput
+          type="password"
+          identifier="password-confirm"
+          label="Confirm Password"
+          v-model="passwordConfirm"
+          :errorMessages="passwordConfirmErrors"
+        />
 
         <div>
-            <form>
-
-                <div>
-                    <label for="email">E-Mail</label>
-                    <input id="email" type="email" v-model="email" />
-                </div>
-
-                <div>
-                    <label for="password">Password</label>
-                    <input id="password" type="password" v-model="password" />
-                </div>
-
-                <div>
-                    <label for="passwordConfirm">Confirm Password</label>
-                    <input id="passwordConfirm" type="password" v-model="passwordConfirm" />
-                </div>
-
-                <div>
-                    <button type="button" :disabled="isEmpty" @click="register">Register</button>
-                </div>
-
-            </form>
+          <button type="button" :disabled="isEmpty" @click="register">Register</button>
         </div>
 
+      </form>
     </div>
+
+  </div>
 </template>
 
 <script>
-import { register } from '@/api/users'
+// import { register } from '@/api/users'
 
 export default {
   name: 'Register',
@@ -40,7 +47,10 @@ export default {
     return {
       email: '',
       password: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
+      emailErrors: [],
+      passwordErrors: [],
+      passwordConfirmErrors: []
     }
   },
   computed: {
@@ -50,9 +60,19 @@ export default {
   },
   methods: {
     register () {
-      register(this.email, this.password)
-        .then(() => {console.log('DONE')})
-        .catch((error) => {console.log(error)})
+      this.emailErrors = []
+      this.passwordErrors = []
+      this.passwordConfirmErrors = []
+
+      if (this.password !== this.passwordConfirm) {
+        this.passwordConfirmErrors = ['Passwords are not matching']        
+        return
+      }
+
+      console.log('Test')
+      // register(this.email, this.password)
+      //   .then(() => {console.log('DONE')})
+      //   .catch((error) => {console.log(error)})
     }
   }
 }
