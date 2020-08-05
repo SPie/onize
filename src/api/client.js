@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'http://onize-api.x/api' // TODO
+  baseURL: 'http://onize.x/api', // TODO
+  withCredentials: true
 })
 
 export default client

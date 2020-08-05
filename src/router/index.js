@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import store from '@/store'
+
 import Dashboard from '@/pages/dashboard/Dashboard'
 import Login from '@/pages/login/Login'
 import Register from '@/pages/users/Register'
@@ -30,7 +32,7 @@ const router = new Router({
 })
 
 router.beforeEach(function(to, from, next){
-  if (to.meta.requiresAuth) {
+  if (to.meta.requiresAuth && !store.getters.authenticatedUser) {
     next({name: 'Login'})
   }
   

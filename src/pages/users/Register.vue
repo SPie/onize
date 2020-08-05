@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <h1>Register</h1>
+    <h1>{{ $t('register' )}}</h1>
 
     <div>
       <form>
@@ -9,27 +9,27 @@
         <VTextInput 
           type="email"
           identifier="email"
-          label="E-Mail"
+          :label="$t('email')"
           v-model="email"
           :errorMessages="emailErrors"
         />
         <VTextInput
           type="password"
           identifier="password"
-          label="Password"
+          :label="$t('password')"
           v-model="password"
           :errorMessages="passwordErrors"
         />
         <VTextInput
           type="password"
           identifier="password-confirm"
-          label="Confirm Password"
+          :label="$t('passwordConfirm')"
           v-model="passwordConfirm"
           :errorMessages="passwordConfirmErrors"
         />
 
         <div>
-          <button type="button" :disabled="isEmpty" @click="register">Register</button>
+          <button type="button" :disabled="isEmpty" @click="register">{{ $t('register') }}</button>
         </div>
 
       </form>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-// import { register } from '@/api/users'
+import { register } from '@/api/users'
 
 export default {
   name: 'Register',
@@ -65,14 +65,33 @@ export default {
       this.passwordConfirmErrors = []
 
       if (this.password !== this.passwordConfirm) {
-        this.passwordConfirmErrors = ['Passwords are not matching']        
+        this.passwordConfirmErrors = ['validation.password_matching']        
         return
       }
 
-      console.log('Test')
-      // register(this.email, this.password)
-      //   .then(() => {console.log('DONE')})
-      //   .catch((error) => {console.log(error)})
+      register(this.email, this.password)
+        .then(response => {
+          console.log(response)
+          this.$store.commit('setAuthenticatedUser', response.data.user)
+
+          // TODO flash message
+
+          this.$router.push({name: 'Dashboard'})
+        })
+        .catch(error => {
+          this.passwordConfirm = this.password = ''
+
+          // TODO flash message
+
+          if (error.response.status === 422) {
+            if (typeof error.response.data.errors.email !== 'undefined') {
+              this.emailErrors = error.response.data.errors.email
+            }
+            if (typeof error.response.data.errors.password !== 'undefined') {
+              this.passwordErrors = error.response.data.errors.password
+            }
+          }
+        })
     }
   }
 }

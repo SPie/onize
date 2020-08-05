@@ -7,7 +7,7 @@
       :value="value"
       v-on:input="$emit('input', $event.target.value)"
     />
-    <div v-for="(errorMessage, index) in errorMessages" :key="index">{{ errorMessage }}</div>
+    <div v-for="(errorMessage, index) in errorMessages" :key="index">{{ $t(errorMessage) }}</div>
   </div>
 </template>
 
