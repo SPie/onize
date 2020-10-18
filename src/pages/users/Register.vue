@@ -71,7 +71,6 @@ export default {
 
       register(this.email, this.password)
         .then(response => {
-          console.log(response)
           this.$store.commit('setAuthenticatedUser', response.data.user)
 
           // TODO flash message

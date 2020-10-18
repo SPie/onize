@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     layout () {
-      return 'guest-layout'
+      return this.$store.getters.authenticatedUser ? 'member-layout' : 'guest-layout'
     }
   }
 }

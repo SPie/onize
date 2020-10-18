@@ -31,9 +31,12 @@ const router = new Router({
   ]
 })
 
-router.beforeEach(function(to, from, next){
+router.beforeEach(function(to, from, next) {
   if (to.meta.requiresAuth && !store.getters.authenticatedUser) {
     next({name: 'Login'})
+  }
+  if (to.name === 'Login' && store.getters.authenticatedUser) {
+    next({name: 'Dashboard'})
   }
   
   next()
