@@ -1,30 +1,30 @@
 <template>
     <div>
-        <h1>Login</h1>
+        <h1>{{ $t('login') }}</h1>
 
         <div>
             <form>
                 <VTextInput
                     type="email"
                     identifier="email"
-                    :label="$t('email')"
+                    :label="$t('label.email')"
                     v-model="email"
                     :errorMessages="emailErrors"
                 />
                 <VTextInput
                     type="password"
                     identifier="password"
-                    :label="$t('password')"
+                    :label="$t('label.password')"
                     v-model="password"
                     :errorMessages="passwordErrors"
                 />
                 <div>
-                    <button type="button" :disabled="isEmpty" @click="login">{{ $t('login') }}</button>
+                    <button type="button" :disabled="isEmpty" @click="login">{{ $t('button.login') }}</button>
                 </div>
             </form>
         </div>
 
-        <router-link :to="{ name: 'Register' }">Register</router-link>
+        <router-link :to="{ name: 'Register' }">{{ $t('register') }}</router-link>
     </div>
 </template>
 

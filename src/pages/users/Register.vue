@@ -9,27 +9,27 @@
         <VTextInput 
           type="email"
           identifier="email"
-          :label="$t('email')"
+          :label="$t('label.email')"
           v-model="email"
           :errorMessages="emailErrors"
         />
         <VTextInput
           type="password"
           identifier="password"
-          :label="$t('password')"
+          :label="$t('label.password')"
           v-model="password"
           :errorMessages="passwordErrors"
         />
         <VTextInput
           type="password"
           identifier="password-confirm"
-          :label="$t('passwordConfirm')"
+          :label="$t('label.passwordConfirm')"
           v-model="passwordConfirm"
           :errorMessages="passwordConfirmErrors"
         />
 
         <div>
-          <button type="button" :disabled="isEmpty" @click="register">{{ $t('register') }}</button>
+          <button type="button" :disabled="isEmpty" @click="register">{{ $t('button.register') }}</button>
         </div>
 
       </form>

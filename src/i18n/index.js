@@ -1,9 +1,23 @@
 const translations = {
   en: {
     register: 'Register',
-    email: 'E-Mail',
-    password: 'Password',
-    passwordConfirm: 'Confirm Password',
+    login: 'Login',
+    profile: 'Profile',
+
+    button: {
+      save: 'Save',
+      cancel: 'Cancel',
+      edit: 'Edit',
+      register: 'Register',
+      login: 'Login',
+      changePassword: 'Change Password'
+    },
+
+    label: {
+      email: 'E-Mail',
+      password: 'Password',
+      passwordConfirm: 'Confirm Password'
+    },
 
     validation: {
       required: 'This field is required',

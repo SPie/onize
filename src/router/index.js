@@ -5,6 +5,7 @@ import store from '@/store'
 
 import Dashboard from '@/pages/dashboard/Dashboard'
 import Login from '@/pages/login/Login'
+import Profile from "@/pages/users/Profile"
 import Register from '@/pages/users/Register'
 
 Vue.use(Router)
@@ -27,6 +28,12 @@ const router = new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile,
+      meta: {requiresAuth: true}
     }
   ]
 })

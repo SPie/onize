@@ -2,6 +2,7 @@
     <div>
         <div>
             {{ user.email }}
+            <router-link :to="{name: 'Profile'}">{{ $t('profile') }}</router-link>
         </div>
         <div>
             <router-view />
