@@ -3,6 +3,7 @@
         <div>
             {{ user.email }}
             <router-link :to="{name: 'Profile'}">{{ $t('profile') }}</router-link>
+            <button @click="logout">{{ $t('logout') }}</button>
         </div>
         <div>
             <router-view />
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+import {logout} from '@/api/auth'
+
 export default {
   name: 'MemberLayout',
   data () {
@@ -20,6 +23,13 @@ export default {
   },
   created: function () {
     this.user = this.$store.getters.authenticatedUser
+  },
+  methods: {
+    logout () {
+      this.$store.commit('setAuthenticatedUser', null)
+
+      logout().finally(() => this.$router.push({name: 'Login'}))
+    }
   }
 }
 </script>
