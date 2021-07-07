@@ -4,7 +4,7 @@ import router from '@/router'
 import store from '@/store'
 
 const client = axios.create({
-  baseURL: 'http://onize.x/api', // TODO
+  baseURL: process.env.VUE_APP_API_ENDPOINT,
   withCredentials: true,
 
 })
