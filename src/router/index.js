@@ -7,6 +7,9 @@ import Dashboard from '@/pages/dashboard/Dashboard'
 import Login from '@/pages/login/Login'
 import Profile from "@/pages/users/Profile"
 import Register from '@/pages/users/Register'
+import Projects from '@/pages/projects/Projects'
+import CreateProject from '@/pages/projects/CreateProject'
+import ShowProject from '@/pages/projects/ShowProject'
 
 Vue.use(Router)
 
@@ -33,6 +36,24 @@ const router = new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/projects',
+      name: 'Projects',
+      component: Projects,
+      meta: {requiresAuth: true},
+    },
+    {
+      path: '/projects/create',
+      name: 'CreateProject',
+      component: CreateProject,
+      meta: {requiresAuth: true},
+    },
+    {
+      path: '/projects/:project/show',
+      name: 'ShowProject',
+      component: ShowProject,
       meta: {requiresAuth: true}
     }
   ]
